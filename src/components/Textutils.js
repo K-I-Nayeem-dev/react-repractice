@@ -10,8 +10,9 @@ function Textutils(props) {
     }
 
     const handleOnUpper = ()=>{
-            let newText = text.toUpperCase();
-            setText(newText);
+        let newText = text.toUpperCase();
+        setText(newText);
+        props.showAlert('Text Covert to UpperCase', 'success');
     }
 
     const handleOnLower = ()=>{

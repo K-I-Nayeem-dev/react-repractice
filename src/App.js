@@ -23,11 +23,24 @@ function App() {
     }
   }
 
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg : message,
+      typ : type,
+    })
+
+    setTimeout(setAlert, 2000);
+    
+  }
+
+
   return (
     <>
       <Navbar title='RePractice' home='Home' link='Link' about='About' darkMode={darkMode} toggleMode={toggleMode} modeText={modeText} />
-      <Alert/>
-      <Textutils heading='Enter Your Text Here' darkMode={darkMode} />
+      <Alert alert={alert} />
+      <Textutils heading='Enter Your Text Here' darkMode={darkMode} showAlert={showAlert} />
       <Accrodian/>
     </>
   );
