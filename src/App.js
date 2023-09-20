@@ -3,7 +3,9 @@ import Accrodian from './components/Accrodian';
 import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import Textutils from './components/Textutils';
+import Links from './components/Links';
 import React, {useState} from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
 
@@ -14,12 +16,30 @@ function App() {
     if(darkMode === 'light'){
       setDarkMode('dark');
       document.body.style.backgroundColor = 'black';
-      setModeText('Enable Light Mode')
+      setModeText('Enable Light Mode');
+      document.title = 'TextUtils - Dark Mode'; 
+      setTimeout(() => {
+        document.title = 'TextUtils';
+      }, 2000);
+      setInterval(() => {
+        document.title = 'TextUtils is Amazing';
+      }, 2000);
+
+      setInterval(() => {
+        document.title = 'Install TextUtils Now';
+      }, 1500);
+      showAlert('Dark Mode Enable', 'success');
     }
+
     else{
       setDarkMode('light');
       document.body.style.backgroundColor = 'white';
-      setModeText('Enable Dark Mode')
+      setModeText('Enable Dark Mode');
+      document.title = 'TextUtils - Light Mode';
+      setTimeout(() => {
+        document.title = 'TextUtils';
+      }, 500);
+      showAlert('Light Mode Enable', 'success');
     }
   }
 
@@ -38,10 +58,17 @@ function App() {
 
   return (
     <>
-      <Navbar title='RePractice' home='Home' link='Link' about='About' darkMode={darkMode} toggleMode={toggleMode} modeText={modeText} />
-      <Alert alert={alert} />
-      <Textutils heading='Enter Your Text Here' darkMode={darkMode} showAlert={showAlert} />
-      <Accrodian/>
+
+  <Router>
+    <Navbar title='RePractice' home='Home' link='Link' about='About' darkMode={darkMode} toggleMode={toggleMode} modeText={modeText} showAlert={showAlert} />
+    <Alert alert={alert} />
+      <Routes>
+          <Route exact path="/" element={<>
+          <Textutils heading='Enter Your Text Here' darkMode={darkMode} showAlert={showAlert} /><Links darkMode={darkMode}/></>}/>
+          <Route exact path="/about" element={<Accrodian darkMode={darkMode}/>} />
+          {/* <Route exact path="/links" element={<Links/>} /> */}
+      </Routes>
+    </Router>
     </>
   );
 }

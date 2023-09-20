@@ -1,33 +1,35 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-function Accrodian() {
+function Accrodian(props) {
 
-    const [dark, setDark] = useState('black');
-    const [bg_color, setBgColor] = useState('white');
-    const [mode, setMode] = useState('Enable Dark Mode');
+    // const [dark, setDark] = useState('black');
+    // const [bg_color, setBgColor] = useState('white');
 
-    const darkMode = ()=>{
-        if(dark === 'black'){
-            setDark('white');
-            setBgColor('black');
-            setMode('Enable Light Mode');
-        }
-        else{
-            setDark('black');
-            setBgColor('white');
-            setMode('Enable Dark Mode');
-        }
-    }
+    // const darkMode = ()=>{
+    //     if(dark === 'black'){
+    //         setDark('white');
+    //         setBgColor('black');
+
+    //     }
+    //     else{
+    //         setDark('black');
+    //         setBgColor('white');
+    //     }
+    // }
+
+    let colorr = { color: props.darkMode === 'light'? 'black' : 'white' }
+    let bgc = { backgroundColor: props.darkMode === 'light'? 'white' : 'black' }
 
     return (
         <>
             <div className="container">
                 <div className="row d-flex justify-content-center">
-                    <div className="col-lg-10">
+                    <div className="col-lg-10 my-3">
+                        <h1 style={{ ...colorr }}>About Us</h1>
                     <div className="accordion" id="accordionExample">
-                        <div className="accordion-item" style={{ color:dark, backgroundColor: bg_color, }}>
+                        <div className="accordion-item" style={{ ...colorr,...bgc }}>
                             <h2 className="accordion-header" id="headingOne">
-                            <button className="accordion-button" style={{ color:dark, backgroundColor: bg_color, }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <button className="accordion-button" style={{ ...colorr,...bgc }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Accordion Item #1
                             </button>
                             </h2>
@@ -37,9 +39,9 @@ function Accrodian() {
                             </div>
                             </div>
                         </div>
-                        <div className="accordion-item" style={{ color:dark, backgroundColor: bg_color, }}>
+                        <div className="accordion-item" style={{ ...colorr,...bgc }}>
                             <h2 className="accordion-header" id="headingTwo">
-                            <button className="accordion-button collapsed" style={{ color:dark, backgroundColor: bg_color, }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button className="accordion-button collapsed" style={{ ...colorr,...bgc }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 Accordion Item #2
                             </button>
                             </h2>
@@ -49,9 +51,9 @@ function Accrodian() {
                             </div>
                             </div>
                         </div>
-                        <div className="accordion-item" style={{ color:dark, backgroundColor: bg_color, }}>
+                        <div className="accordion-item" style={{ ...colorr,...bgc }}>
                             <h2 className="accordion-header" id="headingThree">
-                            <button className="accordion-button collapsed" style={{ color:dark, backgroundColor: bg_color, }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <button className="accordion-button collapsed" style={{ ...colorr,...bgc }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 Accordion Item #3
                             </button>
                             </h2>
@@ -62,7 +64,6 @@ function Accrodian() {
                             </div>
                         </div>
                         </div>
-                        <button type="button" onClick={darkMode} style={{ color:dark, backgroundColor: bg_color }}  className="btn btn-primary mx-1 my-3">{mode}</button>
                     </div>
                 </div>
             </div>
